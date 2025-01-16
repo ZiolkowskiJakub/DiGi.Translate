@@ -34,7 +34,10 @@
             radioButton1 = new RadioButton();
             checkBox1 = new CheckBox();
             windowsFormControl1 = new Controls.WindowsFormControl();
+            dataGridView1 = new DataGridView();
+            Column1_Test = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -45,6 +48,7 @@
             button1.TabIndex = 0;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -93,11 +97,29 @@
             windowsFormControl1.Size = new Size(225, 54);
             windowsFormControl1.TabIndex = 4;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1_Test });
+            dataGridView1.Location = new Point(12, 194);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(300, 188);
+            dataGridView1.TabIndex = 5;
+            // 
+            // Column1_Test
+            // 
+            Column1_Test.HeaderText = "Test Column";
+            Column1_Test.MinimumWidth = 6;
+            Column1_Test.Name = "Column1_Test";
+            Column1_Test.Width = 125;
+            // 
             // TestForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dataGridView1);
             Controls.Add(windowsFormControl1);
             Controls.Add(checkBox1);
             Controls.Add(groupBox1);
@@ -107,6 +129,7 @@
             Text = "TestForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -119,5 +142,7 @@
         private RadioButton radioButton1;
         private CheckBox checkBox1;
         private Controls.WindowsFormControl windowsFormControl1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Column1_Test;
     }
 }

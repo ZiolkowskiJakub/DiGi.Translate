@@ -54,5 +54,17 @@ namespace DiGi.Translate.WPF
 
             return result;
         }
+
+        public static string? Id(this DataGridViewColumn dataGridViewColumn)
+        {
+            if (dataGridViewColumn == null) 
+            {
+                return null;
+            }
+
+            string id = Id(dataGridViewColumn.DataGridView);
+
+            return string.IsNullOrEmpty(id) ? dataGridViewColumn.Name : string.Format("{0}.{1}", id, dataGridViewColumn.Name);
+        }
     }
 }

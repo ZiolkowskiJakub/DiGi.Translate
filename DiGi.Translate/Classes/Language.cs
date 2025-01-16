@@ -44,5 +44,30 @@ namespace DiGi.Translate.Classes
         {
             return new Language(language);
         }
+        
+        public static bool operator ==(Language language_1, Language language_2)
+        {
+            if (Equals(language_1, language_2))
+            {
+                return true;
+            }
+
+            if (Equals(language_1, null))
+            {
+                return false;
+            }
+
+            if (Equals(language_2, null))
+            {
+                return false;
+            }
+
+            return language_1.Name == language_2.Name;
+        }
+        
+        public static bool operator !=(Language language_1, Language language_2)
+        {
+            return language_1?.Name != language_2?.Name;
+        }
     }
 }

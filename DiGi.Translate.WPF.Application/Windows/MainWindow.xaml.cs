@@ -33,6 +33,12 @@ namespace DiGi.Translate.WPF.Application.Windows
                 TranslationModel translationModel = new TranslationModel();
 
                 translationModel.Add(Enums.Language.English, testForm, false, true);
+                translationModel.Add(Enums.Category.Control, "TestForm.dataGridView1.Column1_Test", Enums.Language.English, "AAAA");
+
+
+                translationModel.TranslateControl(Enums.Language.English, testForm);
+
+                testForm.ShowDialog();
             }
 
             //Dictionary<string, string?> dictionary = Query.TextDictionary<Control>(this);

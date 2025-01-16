@@ -74,6 +74,23 @@ namespace DiGi.Translate.WPF
                         translationModel.Add(Enums.Category.Control, keyValuePair.Key, language, keyValuePair.Value);
                     }
                 }
+
+                if(control is DataGridView)
+                {
+                    dictionary = Query.TextDictionary((DataGridView)control);
+                    if(dictionary != null)
+                    {
+                        foreach (KeyValuePair<string, string?> keyValuePair in dictionary)
+                        {
+                            if (!includeNullOrEmpty && string.IsNullOrEmpty(keyValuePair.Value))
+                            {
+                                continue;
+                            }
+
+                            translationModel.Add(Enums.Category.Control, keyValuePair.Key, language, keyValuePair.Value);
+                        }
+                    }
+                }
             }
 
             return true;
