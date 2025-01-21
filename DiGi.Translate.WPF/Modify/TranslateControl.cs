@@ -153,5 +153,48 @@ namespace DiGi.Translate.WPF
         {
             return TranslateControl(translationModel, (Language)language, control, includeNested);
         }
+
+        public static bool TranslateControl(this TranslationModel translationModel, Language language, System.Windows.Controls.Control control, bool includeNested = true)
+        {
+            if (control == null || translationModel == null)
+            {
+                return false;
+            }
+
+            string id = control.Id();
+            if (id == null)
+            {
+                return false;
+            }
+
+            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string text);
+            if (!result)
+            {
+                return result;
+            }
+
+            control.SetText(text);
+
+            if (!includeNested)
+            {
+                return result;
+            }
+
+            List<System.Windows.Controls.Control>? controls_Nested = Query.DependencyObjects<System.Windows.Controls.Control>(control);
+            if (controls_Nested != null)
+            {
+                foreach (System.Windows.Controls.Control control_Nested in controls_Nested)
+                {
+                    TranslateControl(translationModel, language, control_Nested, includeNested);
+                }
+            }
+
+            return result;
+        }
+
+        public static bool TranslateControl(this TranslationModel translationModel, Enums.Language language, System.Windows.Controls.Control control, bool includeNested = true)
+        {
+            return TranslateControl(translationModel, (Language)language, control, includeNested);
+        }
     }
 }
