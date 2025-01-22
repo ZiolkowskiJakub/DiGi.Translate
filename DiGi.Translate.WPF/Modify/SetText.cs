@@ -19,6 +19,20 @@ namespace DiGi.Translate.WPF
                 return true;
             }
 
+            if (dependencyObject is Window)
+            {
+                Window window = (Window)dependencyObject;
+                window.Title = text;
+                return true;
+            }
+
+            if (dependencyObject is DataGridColumn)
+            {
+                DataGridColumn dataGridColumn = ((DataGridColumn)dependencyObject);
+                dataGridColumn.Header = text;
+                return true;
+            }
+
             if (dependencyObject is ContentControl)
             {
                 ContentControl contentControl = (ContentControl)dependencyObject;

@@ -66,5 +66,21 @@ namespace DiGi.Translate.WPF
 
             return string.IsNullOrEmpty(id) ? dataGridViewColumn.Name : string.Format("{0}.{1}", id, dataGridViewColumn.Name);
         }
+
+        public static string? Id(this System.Windows.Controls.DataGridColumn dataGridColumn, System.Windows.Controls.DataGrid dataGrid)
+        {
+            if(dataGridColumn == null)
+            {
+                return null;
+            }
+
+            string? id = dataGrid?.Id();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return null;
+            }
+
+            return string.Format("{0}.{1}", id, dataGridColumn.DisplayIndex);
+        }
     }
 }

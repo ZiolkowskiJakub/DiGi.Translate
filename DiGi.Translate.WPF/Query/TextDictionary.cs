@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace DiGi.Translate.WPF
 {
@@ -28,6 +29,18 @@ namespace DiGi.Translate.WPF
                 }
 
                 result[id] = dependencyObject_Temp?.Text();
+
+                if(dependencyObject_Temp is System.Windows.Controls.DataGrid)
+                {
+                    Dictionary<string, string?>? dictionary = TextDictionary((System.Windows.Controls.DataGrid)(object)dependencyObject_Temp);
+                    if (dictionary != null)
+                    {
+                        foreach (KeyValuePair<string, string?> keyValuePair in dictionary)
+                        {
+                            result[keyValuePair.Key] = keyValuePair.Value;
+                        }
+                    }
+                }
             }
 
             return result;
@@ -94,6 +107,30 @@ namespace DiGi.Translate.WPF
 
                 result[id] = dataGridViewColumn.HeaderText;
 
+            }
+
+            return result;
+        }
+
+        public static Dictionary<string, string?>? TextDictionary(this System.Windows.Controls.DataGrid dataGrid)
+        {
+            ObservableCollection<System.Windows.Controls.DataGridColumn> dataGridColumns = dataGrid?.Columns;
+
+            if (dataGridColumns == null)
+            {
+                return null;
+            }
+
+            Dictionary<string, string?>? result = new Dictionary<string, string?>();
+            foreach (System.Windows.Controls.DataGridColumn dataGridColumn in dataGridColumns)
+            {
+                string id = dataGridColumn?.Id(dataGrid);
+                if (string.IsNullOrWhiteSpace(id))
+                {
+                    continue;
+                }
+
+                result[id] = dataGridColumn.Text();
             }
 
             return result;

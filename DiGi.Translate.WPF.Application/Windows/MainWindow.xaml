@@ -8,6 +8,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Label x:Name="Label_Main" Content="Label" HorizontalAlignment="Left" Margin="149,135,0,0" VerticalAlignment="Top"/>
         <Button x:Name="Button_Translate" Content="Translate" HorizontalAlignment="Left" Margin="187,233,0,0" VerticalAlignment="Top" Click="Button_Translate_Click"/>
         <TextBlock x:Name="TextBlock_Main" HorizontalAlignment="Left" Margin="182,325,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
@@ -16,6 +20,7 @@
         <GroupBox x:Name="GroupBox_Main" Header="GroupBox" HorizontalAlignment="Right" Width="170" VerticalAlignment="Top" Height="100">
             <RadioButton x:Name="RadioButton_Main" Content="RadioButton" HorizontalAlignment="Left" Margin="27,0,0,0" Height="20"/>
         </GroupBox>
+        <DataGrid x:Name="DataGrid_Main" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </Window>

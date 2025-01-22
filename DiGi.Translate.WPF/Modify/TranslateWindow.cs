@@ -56,12 +56,10 @@ namespace DiGi.Translate.WPF
             }
 
             bool result = translationModel.TryGetText(Enums.Category.Control, id, out string text);
-            if (!result)
+            if (result)
             {
-                return result;
+                window.SetText(text);
             }
-
-            window.SetText(text);
 
             if (!includeNested)
             {
@@ -73,7 +71,11 @@ namespace DiGi.Translate.WPF
             {
                 foreach (System.Windows.Controls.Control control_Nested in controls_Nested)
                 {
-                    TranslateControl(translationModel, language, control_Nested, includeNested);
+                    bool translated = TranslateControl(translationModel, language, control_Nested, includeNested);
+                    if(translated)
+                    {
+                        result = true;
+                    }
                 }
             }
 
