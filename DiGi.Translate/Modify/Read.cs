@@ -78,7 +78,13 @@ namespace DiGi.Translate
 
                 foreach(KeyValuePair<int, Language> keyValuePair in dictionary)
                 {
-                    bool added = translationModel.Add(category, id, keyValuePair.Value, row[keyValuePair.Key]?.ToString());
+                    string text = row[keyValuePair.Key]?.ToString();
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        text = text.Replace("\\n", "\n");
+                    }
+
+                    bool added = translationModel.Add(category, id, keyValuePair.Value, text);
                     if(added)
                     {
                         result = true;

@@ -24,7 +24,7 @@ namespace DiGi.Translate.WPF
 
             if (includeNested)
             {
-                Dictionary<string, string?>? dictionary = Query.TextDictionary<System.Windows.Controls.Control>(dependencyObject);
+                Dictionary<string, string?>? dictionary = Query.TextDictionary<FrameworkElement>(dependencyObject);
                 if(dictionary != null)
                 {
                     foreach(KeyValuePair<string, string?> keyValuePair in dictionary)

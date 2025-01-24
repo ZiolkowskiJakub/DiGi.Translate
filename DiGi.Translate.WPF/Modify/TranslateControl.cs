@@ -1,5 +1,6 @@
 ﻿using DiGi.Translate.Classes;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace DiGi.Translate.WPF
 {
@@ -60,44 +61,6 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static bool TranslateControl(this Translator translator, System.Windows.Controls.Control control, bool includeNested = true)
-        {
-            if (control == null || translator == null)
-            {
-                return false;
-            }
-
-            string id = control.Id();
-            if (id == null)
-            {
-                return false;
-            }
-
-            bool result = translator.TryGetText(Enums.Category.Control, id, out string text);
-            if (!result)
-            {
-                return result;
-            }
-
-            control.SetText(text);
-
-            if (!includeNested)
-            {
-                return result;
-            }
-
-            List<System.Windows.Controls.Control>? controls_Nested = Query.DependencyObjects<System.Windows.Controls.Control>(control);
-            if (controls_Nested != null)
-            {
-                foreach (System.Windows.Controls.Control control_Nested in controls_Nested)
-                {
-                    TranslateControl(translator, control_Nested, includeNested);
-                }
-            }
-
-            return result;
-        }
-
         public static bool TranslateControl(this TranslationModel translationModel, Language language, Control control, bool includeNested = true)
         {
             if (translationModel == null || control == null || language == null)
@@ -151,78 +114,6 @@ namespace DiGi.Translate.WPF
         }
 
         public static bool TranslateControl(this TranslationModel translationModel, Enums.Language language, Control control, bool includeNested = true)
-        {
-            return TranslateControl(translationModel, (Language)language, control, includeNested);
-        }
-
-        public static bool TranslateControl(this TranslationModel translationModel, Language language, System.Windows.Controls.Control control, bool includeNested = true)
-        {
-            if (control == null || translationModel == null)
-            {
-                return false;
-            }
-
-            string? id;
-
-            id = control.Id();
-            if (id == null)
-            {
-                return false;
-            }
-
-            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string text);
-            if (result)
-            {
-                control.SetText(text);
-            }
-
-            if (!includeNested)
-            {
-                return result;
-            }
-
-            List<System.Windows.Controls.Control>? controls_Nested = Query.DependencyObjects<System.Windows.Controls.Control>(control);
-            if (controls_Nested != null)
-            {
-                foreach (System.Windows.Controls.Control control_Nested in controls_Nested)
-                {
-                    bool translated = TranslateControl(translationModel, language, control_Nested, includeNested);
-                    if(translated)
-                    {
-                        result = true;
-                    }
-                }
-            }
-
-            if (control is System.Windows.Controls.DataGrid)
-            {
-                System.Windows.Controls.DataGrid dataGrid = (System.Windows.Controls.DataGrid)(object)control;
-
-                ObservableCollection<System.Windows.Controls.DataGridColumn> dataGridColumns = dataGrid?.Columns;
-                if (dataGridColumns != null)
-                {
-                    foreach (System.Windows.Controls.DataGridColumn dataGridColumn in dataGridColumns)
-                    {
-                        id = dataGridColumn.Id(dataGrid);
-                        if (string.IsNullOrWhiteSpace(id))
-                        {
-                            continue;
-                        }
-
-                        if (!translationModel.TryGetText(Enums.Category.Control, id, language, out text))
-                        {
-                            continue;
-                        }
-
-                        dataGridColumn.SetText(text);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public static bool TranslateControl(this TranslationModel translationModel, Enums.Language language, System.Windows.Controls.Control control, bool includeNested = true)
         {
             return TranslateControl(translationModel, (Language)language, control, includeNested);
         }

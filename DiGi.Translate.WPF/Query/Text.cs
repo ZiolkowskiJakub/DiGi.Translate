@@ -12,47 +12,44 @@ namespace DiGi.Translate.WPF
                 return null;
             }
 
+            string? result = null;
+
             if (dependencyObject is TextBlock)
             {
                 TextBlock textBlock = (TextBlock)dependencyObject;
-                return textBlock.Text;
+                result = textBlock.Text;
             }
-
-            if (dependencyObject is Window)
+            else if (dependencyObject is Window)
             {
                 Window window = (Window)dependencyObject;
-                return window.Title;
+                result = window.Title;
             }
-
-            if(dependencyObject is DataGridColumn)
+            else if(dependencyObject is DataGridColumn)
             {
                 object header = ((DataGridColumn)dependencyObject).Header;
 
                 if (header is string)
                 {
-                    return (string)header;
+                    result = (string)header;
                 }
             }
-
-            if (dependencyObject is ContentControl)
+            else if (dependencyObject is ContentControl)
             {
                 ContentControl contentControl = (ContentControl)dependencyObject;
                 object content = contentControl.Content;
 
                 if (content is string)
                 {
-                    return (string)content;
+                    result = (string)content;
                 }
-
-                //if (content is DependencyObject)
-                //{
-                //    return Text((DependencyObject)content);
-                //}
-
-                return null;
             }
 
-            return null;
+            if(!string.IsNullOrWhiteSpace(result))
+            {
+                result = result.Replace("\\n", "\n");
+            }
+
+            return result;
         }
     }
 }

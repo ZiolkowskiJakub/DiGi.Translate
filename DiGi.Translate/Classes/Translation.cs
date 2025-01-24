@@ -28,7 +28,7 @@ namespace DiGi.Translate.Classes
 
         public bool TryGetText(Language language, out string text)
         {
-            if (language == null || !dictionary.TryGetValue(language, out text))
+            if (language == null || !dictionary.TryGetValue(language, out text) || string.IsNullOrEmpty(text))
             {
                 text = null;
                 return false;

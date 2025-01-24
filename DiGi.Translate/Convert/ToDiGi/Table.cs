@@ -42,6 +42,8 @@ namespace DiGi.Translate
                                     text = string.Empty;
                                 }
 
+                                text = text.Replace("\n", "\\n");
+
                                 dictionary[language.ToString()] = text;
                             }
 

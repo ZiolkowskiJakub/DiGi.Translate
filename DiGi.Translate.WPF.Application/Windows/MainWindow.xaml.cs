@@ -21,9 +21,12 @@ namespace DiGi.Translate.WPF.Application.Windows
             TranslationModel translationModel = new TranslationModel();
             translationModel.Add(Enums.Language.English, this, false, true);
 
-            Translation translation = new Translation(Enums.Category.Control, "MainWindow.Grid.DataGrid_Main.0");
+            Translation translation = new Translation(Enums.Category.Control, "MainWindow.Grid_1.DataGrid_Main.0");
             translation.Add(Enums.Language.German, "AAA");
+            translationModel.Add(translation);
 
+            translation = new Translation(Enums.Category.Control, "MainWindow.Grid_1.TabControl_1.TabItem_2.StackPanel_1.Grid_1.TextBlock_1");
+            translation.Add(Enums.Language.German, "AAA");
             translationModel.Add(translation);
 
             Modify.TranslateWindow(translationModel, Enums.Language.German, this);

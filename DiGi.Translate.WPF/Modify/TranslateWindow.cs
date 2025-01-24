@@ -1,10 +1,11 @@
 ﻿using DiGi.Translate.Classes;
+using System.Windows;
 
 namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
-        public static bool TranslateWindow(this Translator translator, System.Windows.Window window, bool includeNested = true)
+        public static bool TranslateWindow(this Translator translator, Window window, bool includeNested = true)
         {
             if (window == null || translator == null)
             {
@@ -30,19 +31,19 @@ namespace DiGi.Translate.WPF
                 return result;
             }
 
-            List<System.Windows.Controls.Control>? controls_Nested = Query.DependencyObjects<System.Windows.Controls.Control>(window);
-            if (controls_Nested != null)
+            List<FrameworkElement>? frameworkElements_Nested = Query.DependencyObjects<FrameworkElement>(window);
+            if (frameworkElements_Nested != null)
             {
-                foreach (System.Windows.Controls.Control control_Nested in controls_Nested)
+                foreach (FrameworkElement frameworkElement_Nested in frameworkElements_Nested)
                 {
-                    TranslateControl(translator, control_Nested, includeNested);
+                    TranslateFrameworkElement(translator, frameworkElement_Nested, includeNested);
                 }
             }
 
             return result;
         }
 
-        public static bool TranslateWindow(this TranslationModel translationModel, Language language, System.Windows.Window window, bool includeNested = true)
+        public static bool TranslateWindow(this TranslationModel translationModel, Language language, Window window, bool includeNested = true)
         {
             if (window == null || translationModel == null)
             {
@@ -66,12 +67,12 @@ namespace DiGi.Translate.WPF
                 return result;
             }
 
-            List<System.Windows.Controls.Control>? controls_Nested = Query.DependencyObjects<System.Windows.Controls.Control>(window);
-            if (controls_Nested != null)
+            List<FrameworkElement>? frameworkElements_Nested = Query.DependencyObjects<FrameworkElement>(window);
+            if (frameworkElements_Nested != null)
             {
-                foreach (System.Windows.Controls.Control control_Nested in controls_Nested)
+                foreach (FrameworkElement frameworkElement_Nested in frameworkElements_Nested)
                 {
-                    bool translated = TranslateControl(translationModel, language, control_Nested, includeNested);
+                    bool translated = TranslateFrameworkElement(translationModel, language, frameworkElement_Nested, includeNested);
                     if(translated)
                     {
                         result = true;

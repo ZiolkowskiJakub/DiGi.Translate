@@ -40,6 +40,10 @@ namespace DiGi.Translate.WPF
             if(string.IsNullOrWhiteSpace(result))
             {
                 result = dependencyObject.GetType().Name;
+                if(TryGetIndex(dependencyObject, out int index))
+                {
+                    result = string.Format("{0}_{1}", result, index);
+                }
             }
 
             DependencyObject? dependencyObject_Parent = LogicalTreeHelper.GetParent(dependencyObject);
@@ -80,7 +84,14 @@ namespace DiGi.Translate.WPF
                 return null;
             }
 
-            return string.Format("{0}.{1}", id, dataGridColumn.DisplayIndex);
+            if(!TryGetIndex(dataGridColumn, dataGrid, out int index) || index == -1)
+            {
+                index = dataGridColumn.DisplayIndex;
+            }
+
+            return string.Format("{0}.{1}_{2}", id, dataGridColumn.GetType().Name, index);
+
+
         }
     }
 }
