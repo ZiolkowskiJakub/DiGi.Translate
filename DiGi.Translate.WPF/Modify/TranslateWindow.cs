@@ -56,7 +56,7 @@ namespace DiGi.Translate.WPF
                 return false;
             }
 
-            bool result = translationModel.TryGetText(Enums.Category.Control, id, out string text);
+            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string text);
             if (result)
             {
                 window.SetText(text);

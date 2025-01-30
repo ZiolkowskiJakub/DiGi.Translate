@@ -29,6 +29,18 @@ namespace DiGi.Translate.WPF.Application.Windows
             translation.Add(Enums.Language.German, "AAA");
             translationModel.Add(translation);
 
+            translation = new Translation(Enums.Category.Control, "MainWindow");
+            translation.Add(Enums.Language.German, "AAA");
+            translationModel.Add(translation);
+
+            translation = new Translation(Enums.Category.Control, "MainWindow.Grid_1.GroupBox_Main");
+            translation.Add(Enums.Language.German, "AAA");
+            translationModel.Add(translation);
+
+            translation = new Translation(Enums.Category.Control, "MainWindow.Grid_1.TabControl_1.TabItem_1");
+            translation.Add(Enums.Language.German, "AAA");
+            translationModel.Add(translation);
+
             Modify.TranslateWindow(translationModel, Enums.Language.German, this);
 
 

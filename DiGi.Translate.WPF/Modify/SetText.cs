@@ -33,6 +33,27 @@ namespace DiGi.Translate.WPF
                 return true;
             }
 
+            if (dependencyObject is System.Windows.Controls.GroupBox)
+            {
+                System.Windows.Controls.GroupBox groupBox = ((System.Windows.Controls.GroupBox)dependencyObject);
+                groupBox.Header = text;
+                return true;
+            }
+
+            if (dependencyObject is TabItem)
+            {
+                TabItem tabItem = ((TabItem)dependencyObject);
+                tabItem.Header = text;
+                return true;
+            }
+
+            if (dependencyObject is HeaderedContentControl)
+            {
+                HeaderedContentControl headeredContentControl = ((HeaderedContentControl)dependencyObject);
+                headeredContentControl.Header = text;
+                return true;
+            }
+
             if (dependencyObject is ContentControl)
             {
                 ContentControl contentControl = (ContentControl)dependencyObject;
