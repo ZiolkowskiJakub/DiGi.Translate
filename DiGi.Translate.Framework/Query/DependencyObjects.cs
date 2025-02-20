@@ -1,11 +1,13 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 
 
-namespace DiGi.Translate.WPF
+namespace DiGi.Translate.Framework
 {
     public static partial class Query
     {
-        public static List<TDependencyObject>? DependencyObjects<TDependencyObject>(this DependencyObject dependencyObject, bool includeNested = true) where TDependencyObject : DependencyObject
+
+        public static List<TDependencyObject> DependencyObjects<TDependencyObject>(this DependencyObject dependencyObject, bool includeNested = true) where TDependencyObject : DependencyObject
         {
             System.Collections.IEnumerable childrens = LogicalTreeHelper.GetChildren(dependencyObject);
             if (childrens == null)
@@ -31,7 +33,7 @@ namespace DiGi.Translate.WPF
                     continue;
                 }
 
-                List<TDependencyObject>? dependencyObjects_Nested = DependencyObjects<TDependencyObject>((DependencyObject)@object);
+                List<TDependencyObject> dependencyObjects_Nested = DependencyObjects<TDependencyObject>((DependencyObject)@object);
                 if (dependencyObjects_Nested == null)
                 {
                     continue;

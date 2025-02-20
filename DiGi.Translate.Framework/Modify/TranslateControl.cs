@@ -43,5 +43,62 @@ namespace DiGi.Translate.Framework
 
             return result;
         }
+
+        public static bool TranslateControl(this TranslationModel translationModel, Language language, Control control, bool includeNested = true)
+        {
+            if (translationModel == null || control == null || language == null)
+            {
+                return false;
+            }
+
+            bool result = false;
+            if (translationModel.TryGetText(Enums.Category.Control, control.Id(), language, out string text))
+            {
+                control.Text = text;
+                result = true;
+            }
+
+            if (!includeNested)
+            {
+                return result;
+            }
+
+            List<Control> controls_Nested = Query.Controls<Control>(control);
+            if (controls_Nested != null)
+            {
+                foreach (Control control_Nested in controls_Nested)
+                {
+                    bool result_Nested = TranslateControl(translationModel, language, control_Nested, includeNested);
+                    if (result_Nested)
+                    {
+                        result = true;
+                    }
+                }
+            }
+
+            if (control is DataGridView)
+            {
+                DataGridViewColumnCollection dataGridViewColumnCollection = ((DataGridView)control)?.Columns;
+                if (dataGridViewColumnCollection != null)
+                {
+                    foreach (DataGridViewColumn dataGridViewColumn in dataGridViewColumnCollection)
+                    {
+                        if (!translationModel.TryGetText(Enums.Category.Control, dataGridViewColumn.Id(), language, out text))
+                        {
+                            continue;
+                        }
+
+                        dataGridViewColumn.HeaderText = text;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static bool TranslateControl(this TranslationModel translationModel, Enums.Language language, Control control, bool includeNested = true)
+        {
+            return TranslateControl(translationModel, (Language)language, control, includeNested);
+        }
     }
 }
