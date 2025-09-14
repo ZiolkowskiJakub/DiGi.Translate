@@ -47,11 +47,11 @@ namespace DiGi.Translate.WPF
             return false;
         }
 
-        public static bool TryGetIndex(this System.Windows.Controls.DataGridColumn dataGridColumn, System.Windows.Controls.DataGrid dataGrid, out int index)
+        public static bool TryGetIndex(this System.Windows.Controls.DataGridColumn? dataGridColumn, System.Windows.Controls.DataGrid? dataGrid, out int index)
         {
             index = -1;
 
-            if (dataGridColumn == null)
+            if (dataGridColumn is null || dataGrid is null)
             {
                 return false;
             }

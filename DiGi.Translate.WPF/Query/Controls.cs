@@ -7,26 +7,26 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Query
     {
-        public static List<T> Controls<T>(this Form form) where T : Control
+        public static List<T>? Controls<T>(this Form? form) where T : Control
         {
-            List<Control> controls = Controls(form);
+            List<Control>? controls = Controls(form);
             if (controls == null)
             {
                 return null;
             }
 
-            return controls.FindAll(x => x is T).Cast<T>().ToList();
+            return [.. controls.FindAll(x => x is T).Cast<T>()];
         }
 
-        public static List<Control> Controls(this Form form)
+        public static List<Control>? Controls(this Form? form)
         {
-            Control.ControlCollection controls = form?.Controls;
+            Control.ControlCollection? controls = form?.Controls;
             if (controls == null)
             {
                 return null;
             }
 
-            List<Control> result = new List<Control>();
+            List<Control> result = [];
             foreach (Control control in controls)
             {
                 if (control == null)
@@ -41,7 +41,7 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static List<T>? Controls<T>(this Control control) where T : Control
+        public static List<T>? Controls<T>(this Control? control) where T : Control
         {
             Control.ControlCollection? controls = control?.Controls;
             if (controls == null)
@@ -49,7 +49,7 @@ namespace DiGi.Translate.WPF
                 return null;
             }
 
-            List<Control>? result = new List<Control>();
+            List<Control> result = [];
             foreach (Control control_Temp in controls)
             {
                 if (control_Temp == null)
@@ -63,17 +63,17 @@ namespace DiGi.Translate.WPF
             return result.FindAll(x => x is T).ConvertAll(x => (T)x);
         }
 
-        public static List<T> Controls<T>(this Control control, string text, TextComparisonType textComparisonType, bool caseSensitive = true) where T : Control
+        public static List<T>? Controls<T>(this Control? control, string? text, TextComparisonType textComparisonType, bool caseSensitive = true) where T : Control
         {
             if (control == null)
             {
                 return null;
             }
 
-            List<T> controls = new List<T>();
+            List<T> controls = [];
             Controls(control, ref controls);
 
-            List<T> result = new List<T>();
+            List<T> result = [];
             if (controls == null || controls.Count == 0)
             {
                 return result;
@@ -90,14 +90,11 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        private static void Controls<T>(Control control, ref List<T> controls) where T : Control
+        private static void Controls<T>(Control? control, ref List<T> controls) where T : Control
         {
-            if (controls == null)
-            {
-                controls = new List<T>();
-            }
+            controls ??= [];
 
-            Control.ControlCollection controls_Temp = control?.Controls;
+            Control.ControlCollection? controls_Temp = control?.Controls;
             if (controls_Temp == null || controls_Temp.Count == 0)
             {
                 return;
@@ -107,8 +104,7 @@ namespace DiGi.Translate.WPF
             {
                 Controls(control_Temp, ref controls);
 
-                T t = control_Temp as T;
-                if (t == null)
+                if (control_Temp is not T t)
                 {
                     continue;
                 }

@@ -5,27 +5,33 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
-        public static bool TranslateWindow(this Translator translator, Window window, bool includeNested = true)
+        public static bool TranslateWindow(this Translator? translator, Window? window, bool includeNested = true)
         {
             if (window == null || translator == null)
             {
                 return false;
             }
 
-            string id = window.Id();
+            string? id = window.Id();
             if (id == null)
             {
                 return false;
             }
 
-            bool result = translator.TryGetText(Enums.Category.Control, id, out string text);
+            bool result = translator.TryGetText(Enums.Category.Control, id, out string? text);
             if (!result)
             {
                 return result;
             }
 
-            window.SetText(text);
+            result = false;
 
+            if(text is not null)
+            {
+                window.SetText(text);
+                result = true;
+            }
+            
             if (!includeNested)
             {
                 return result;
@@ -43,23 +49,28 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static bool TranslateWindow(this TranslationModel translationModel, Language language, Window window, bool includeNested = true)
+        public static bool TranslateWindow(this TranslationModel? translationModel, Language? language, Window? window, bool includeNested = true)
         {
             if (window == null || translationModel == null)
             {
                 return false;
             }
 
-            string id = window.Id();
+            string? id = window.Id();
             if (id == null)
             {
                 return false;
             }
 
-            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string text);
+            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string? text);
             if (result)
             {
-                window.SetText(text);
+                result = false;
+                if(text is not null)
+                {
+                    window.SetText(text);
+                    result = true;
+                }
             }
 
             if (!includeNested)

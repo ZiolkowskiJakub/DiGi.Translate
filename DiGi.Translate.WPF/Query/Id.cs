@@ -4,7 +4,7 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Query
     {
-        public static string Id(this Control control)
+        public static string? Id(this Control? control)
         {
             if (control == null)
             {
@@ -19,7 +19,7 @@ namespace DiGi.Translate.WPF
                 
             if (control.Parent != null)
             {
-                string id = control.Parent.Id();
+                string? id = control.Parent.Id();
                 if (!string.IsNullOrEmpty(id))
                 {
                     result = string.Format("{0}.{1}", id, result);
@@ -29,7 +29,7 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static string? Id(this DependencyObject dependencyObject)
+        public static string? Id(this DependencyObject? dependencyObject)
         {
             if(dependencyObject == null)
             {
@@ -59,14 +59,14 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static string? Id(this DataGridViewColumn dataGridViewColumn)
+        public static string? Id(this DataGridViewColumn? dataGridViewColumn)
         {
             if (dataGridViewColumn == null) 
             {
                 return null;
             }
 
-            string id = Id(dataGridViewColumn.DataGridView);
+            string? id = Id(dataGridViewColumn.DataGridView);
 
             return string.IsNullOrEmpty(id) ? dataGridViewColumn.Name : string.Format("{0}.{1}", id, dataGridViewColumn.Name);
         }

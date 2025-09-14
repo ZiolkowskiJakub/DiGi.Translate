@@ -5,19 +5,19 @@ namespace DiGi.Translate.Classes
 {
     public class Translation
     {
-        private Category category;
-        private string id;
-        private Dictionary<Language, string> dictionary = new Dictionary<Language, string>();
+        private readonly Category? category;
+        private readonly string? id;
+        private readonly Dictionary<Language, string> dictionary = [];
 
-        public Translation(Category category, string id)
+        public Translation(Category? category, string? id)
         {
-            this.category = category == null ? null : new Category(category);
+            this.category = category is null ? null : new Category(category);
             this.id = id;
         }
 
         public bool Add(Language language, string text)
         {
-            if (language == null)
+            if (language is null)
             {
                 return false;
             }
@@ -26,9 +26,9 @@ namespace DiGi.Translate.Classes
             return true;
         }
 
-        public bool TryGetText(Language language, out string text)
+        public bool TryGetText(Language? language, out string? text)
         {
-            if (language == null || !dictionary.TryGetValue(language, out text) || string.IsNullOrEmpty(text))
+            if (language is null || !dictionary.TryGetValue(language, out text) || string.IsNullOrEmpty(text))
             {
                 text = null;
                 return false;
@@ -37,11 +37,11 @@ namespace DiGi.Translate.Classes
             return true;
         }
 
-        public string this[Language language]
+        public string? this[Language? language]
         {
             get
             {
-                if (!TryGetText(language, out string result))
+                if (!TryGetText(language, out string? result))
                 {
                     result = null;
                 }
@@ -50,7 +50,7 @@ namespace DiGi.Translate.Classes
             }
         }
 
-        public Category Category
+        public Category? Category
         {
             get
             {
@@ -58,7 +58,7 @@ namespace DiGi.Translate.Classes
             }
         }
 
-        public string Id
+        public string? Id
         {
             get
             {
@@ -66,11 +66,11 @@ namespace DiGi.Translate.Classes
             }
         }
 
-        public HashSet<Language> Languages
+        public HashSet<Language>? Languages
         {
             get
             {
-                return new HashSet<Language>(dictionary?.Keys);
+                return [.. dictionary.Keys];
             }
         }
     }

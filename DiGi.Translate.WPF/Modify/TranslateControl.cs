@@ -1,25 +1,23 @@
 ﻿using DiGi.Translate.Classes;
-using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
-        public static bool TranslateControl(this Translator translator, Control control, bool includeNested = true)
+        public static bool TranslateControl(this Translator? translator, Control? control, bool includeNested = true)
         {
             if (control == null || translator == null)
             {
                 return false;
             }
 
-            string id = control.Id();
+            string? id = control.Id();
             if (id == null)
             {
                 return false;
             }
 
-            bool result = translator.TryGetText(Enums.Category.Control, id, out string text);
+            bool result = translator.TryGetText(Enums.Category.Control, id, out string? text);
             if (!result)
             {
                 return result;
@@ -32,7 +30,7 @@ namespace DiGi.Translate.WPF
                 return result;
             }
 
-            List<Control> controls_Nested = Query.Controls<Control>(control);
+            List<Control>? controls_Nested = Query.Controls<Control>(control);
             if (controls_Nested != null)
             {
                 foreach (Control control_Nested in controls_Nested)
@@ -41,9 +39,9 @@ namespace DiGi.Translate.WPF
                 }
             }
 
-            if (control is DataGridView)
+            if (control is DataGridView dataGridView)
             {
-                DataGridViewColumnCollection dataGridViewColumnCollection = ((DataGridView)control)?.Columns;
+                DataGridViewColumnCollection? dataGridViewColumnCollection = dataGridView?.Columns;
                 if (dataGridViewColumnCollection != null)
                 {
                     foreach (DataGridViewColumn dataGridViewColumn in dataGridViewColumnCollection)
@@ -61,15 +59,15 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static bool TranslateControl(this TranslationModel translationModel, Language language, Control control, bool includeNested = true)
+        public static bool TranslateControl(this TranslationModel? translationModel, Language? language, Control? control, bool includeNested = true)
         {
-            if (translationModel == null || control == null || language == null)
+            if (translationModel is null || control is null || language is null)
             {
                 return false;
             }
 
             bool result = false;
-            if (translationModel.TryGetText(Enums.Category.Control, control.Id(), language, out string text))
+            if (translationModel.TryGetText(Enums.Category.Control, control.Id(), language, out string? text))
             {
                 control.Text = text;
                 result = true;
@@ -80,7 +78,7 @@ namespace DiGi.Translate.WPF
                 return result;
             }
 
-            List<Control> controls_Nested = Query.Controls<Control>(control);
+            List<Control>? controls_Nested = Query.Controls<Control>(control);
             if (controls_Nested != null)
             {
                 foreach (Control control_Nested in controls_Nested)
@@ -93,9 +91,9 @@ namespace DiGi.Translate.WPF
                 }
             }
 
-            if (control is DataGridView)
+            if (control is DataGridView dataGridView)
             {
-                DataGridViewColumnCollection dataGridViewColumnCollection = ((DataGridView)control)?.Columns;
+                DataGridViewColumnCollection? dataGridViewColumnCollection = dataGridView?.Columns;
                 if (dataGridViewColumnCollection != null)
                 {
                     foreach (DataGridViewColumn dataGridViewColumn in dataGridViewColumnCollection)
@@ -113,7 +111,7 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static bool TranslateControl(this TranslationModel translationModel, Enums.Language language, Control control, bool includeNested = true)
+        public static bool TranslateControl(this TranslationModel? translationModel, Enums.Language language, Control? control, bool includeNested = true)
         {
             return TranslateControl(translationModel, (Language)language, control, includeNested);
         }

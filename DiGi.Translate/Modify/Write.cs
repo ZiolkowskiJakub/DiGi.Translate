@@ -7,7 +7,7 @@ namespace DiGi.Translate
     {
         public static bool Write(this TranslationModel translationModel, string path)
         {
-            Table table = translationModel?.ToDiGi_Table();
+            Table? table = translationModel?.ToDiGi_Table();
             if(table == null)
             {
                 return false;

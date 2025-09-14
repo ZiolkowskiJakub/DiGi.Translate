@@ -7,7 +7,7 @@ namespace DiGi.Translate.WPF
     {
         public static bool Add(this TranslationModel translationModel, Language language, DependencyObject dependencyObject, bool includeNullOrEmpty = false, bool includeNested = true)
         {
-            if(translationModel == null || language == null || dependencyObject == null)
+            if(translationModel is null || language is null || dependencyObject is null)
             {
                 return false;
             }
@@ -44,7 +44,7 @@ namespace DiGi.Translate.WPF
 
         public static bool Add(this TranslationModel translationModel, Language language, Control control, bool includeNullOrEmpty = false, bool includeNested = true)
         {
-            if (translationModel == null || language == null || control == null)
+            if (translationModel is null || language is null || control is null)
             {
                 return false;
             }
@@ -75,9 +75,9 @@ namespace DiGi.Translate.WPF
                     }
                 }
 
-                if(control is DataGridView)
+                if(control is DataGridView dataGridView)
                 {
-                    dictionary = Query.TextDictionary((DataGridView)control);
+                    dictionary = Query.TextDictionary(dataGridView);
                     if(dictionary != null)
                     {
                         foreach (KeyValuePair<string, string?> keyValuePair in dictionary)

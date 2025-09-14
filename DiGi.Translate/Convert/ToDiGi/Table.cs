@@ -6,14 +6,14 @@ namespace DiGi.Translate
 {
     public static partial class Convert
     {
-        public static Table ToDiGi_Table(this TranslationModel translationModel)
+        public static Table? ToDiGi_Table(this TranslationModel? translationModel)
         {
             if (translationModel == null)
             {
                 return null;
             }
 
-            Table result = new Table();
+            Table result = new ();
 
             HashSet<Language> languages = translationModel.GetLanguages();
             if (languages != null)
@@ -23,7 +23,7 @@ namespace DiGi.Translate
                 {
                     foreach (Category category in categories)
                     {
-                        HashSet<string> ids = translationModel.GetIds(category);
+                        HashSet<string>? ids = translationModel.GetIds(category);
                         if (ids == null)
                         {
                             continue;
@@ -31,13 +31,15 @@ namespace DiGi.Translate
 
                         foreach (string id in ids)
                         {
-                            Dictionary<string, object> dictionary = new Dictionary<string, object>();
-                            dictionary.Add(Constans.ColumnName.Category, category.ToString());
-                            dictionary.Add(Constans.ColumnName.Id, id);
+                            Dictionary<string, object> dictionary = new()
+                            {
+                                { Constans.ColumnName.Category, category.ToString() },
+                                { Constans.ColumnName.Id, id }
+                            };
 
                             foreach(Language language in languages)
                             {
-                                if(!translationModel.TryGetText(category, id, language, out string text) || text == null)
+                                if(!translationModel.TryGetText(category, id, language, out string? text) || text == null)
                                 {
                                     text = string.Empty;
                                 }
@@ -47,7 +49,7 @@ namespace DiGi.Translate
                                 dictionary[language.ToString()] = text;
                             }
 
-                            result.AddRow(dictionary);
+                            result.AddRow(dictionary!);
                         }
                     }
                 }

@@ -2,19 +2,20 @@
 {
     public class Translator
     {
-        private TranslationModel translationModel;
-        public Language Language { get; set; }
+        private readonly TranslationModel? translationModel;
+        public Language? Language { get; set; }
 
-        public Translator(TranslationModel translationModel, Language language)
+        public Translator(TranslationModel? translationModel, Language? language)
         {
             this.translationModel = translationModel;
             Language = language;
         }
 
-        public bool TryGetText(Category category, string id, out string text)
+        public bool TryGetText(Category? category, string? id, out string? text)
         {
             text = null;
-            if(category == null || id == null)
+
+            if(translationModel is null || category is null || id is null)
             {
                 return false;
             }
@@ -22,10 +23,10 @@
             return translationModel.TryGetText(category, id, Language, out text);
         }
 
-        public bool TryGetText(string category, string id, out string text)
+        public bool TryGetText(string? category, string? id, out string? text)
         {
             text = null;
-            if(category == null || id == null)
+            if(category is null || id is null)
             {
                 return false;
             }

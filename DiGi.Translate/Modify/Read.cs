@@ -6,14 +6,14 @@ namespace DiGi.Translate
 {
     public static partial class Modify
     {
-        public static bool Read(this TranslationModel translationModel, string path)
+        public static bool Read(this TranslationModel? translationModel, string? path)
         {
             if(translationModel == null)
             {
                 return false;
             }
 
-            Table table = new Table();
+            Table table = new();
 
             if(!Core.IO.DelimitedData.Modify.Read(table, path, Core.IO.DelimitedData.Enums.DelimitedDataSeparator.Tab))
             {
@@ -32,7 +32,7 @@ namespace DiGi.Translate
                 return false;
             }
 
-            Dictionary<int, Language> dictionary = new Dictionary<int, Language>();
+            Dictionary<int, Language> dictionary = [];
             for (int i = 0; i < table.ColumnCount; i++)
             {
                 if(i == index_Category || i == index_Id)
@@ -40,13 +40,13 @@ namespace DiGi.Translate
                     continue;
                 }
 
-                string languageName = table.GetColumn(i)?.Name;
+                string? languageName = table.GetColumn(i)?.Name;
                 if(string.IsNullOrWhiteSpace(languageName))
                 {
                     continue;
                 }
 
-                dictionary[i] = languageName;
+                dictionary[i] = languageName!;
             }
 
             if(dictionary.Count == 0)
@@ -58,7 +58,7 @@ namespace DiGi.Translate
 
             foreach (Row row in table.Rows)
             {
-                string value = null;
+                string? value = null;
 
                 value = row[index_Category]?.ToString();
                 if (string.IsNullOrWhiteSpace(value))
@@ -66,7 +66,7 @@ namespace DiGi.Translate
                     continue;
                 }
 
-                Category category = value;
+                Category? category = value!;
 
                 value = row[index_Id]?.ToString();
                 if (string.IsNullOrWhiteSpace(value))
@@ -74,14 +74,14 @@ namespace DiGi.Translate
                     continue;
                 }
 
-                string id = value;
+                string? id = value;
 
                 foreach(KeyValuePair<int, Language> keyValuePair in dictionary)
                 {
-                    string text = row[keyValuePair.Key]?.ToString();
+                    string? text = row[keyValuePair.Key]?.ToString();
                     if (!string.IsNullOrWhiteSpace(text))
                     {
-                        text = text.Replace("\\n", "\n");
+                        text = text?.Replace("\\n", "\n");
                     }
 
                     bool added = translationModel.Add(category, id, keyValuePair.Value, text);

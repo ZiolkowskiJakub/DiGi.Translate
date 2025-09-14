@@ -9,6 +9,17 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<!-- Redirect AssemblyAttributes.cs so each project has its own -->
+		<TargetFrameworkMonikerAssemblyAttributesPath>$(IntermediateOutputPath)$(MSBuildProjectName).AssemblyAttributes.cs</TargetFrameworkMonikerAssemblyAttributesPath>
+		<!-- Avoid duplicate TargetFrameworkAttribute -->
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- Prevent duplicate 'Compile' inclusion of the generated AssemblyAttributes.cs -->
+		<Compile Remove="$(IntermediateOutputPath)$(MSBuildProjectName).AssemblyAttributes.cs" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\DiGi.Translate.WPF\DiGi.Translate.WPF.csproj" />
     <ProjectReference Include="..\DiGi.Translate\DiGi.Translate.csproj" />

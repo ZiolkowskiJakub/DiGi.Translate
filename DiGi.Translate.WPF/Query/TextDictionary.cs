@@ -5,14 +5,14 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Query
     {
-        public static Dictionary<string, string?>? TextDictionary<TDependencyObject>(this DependencyObject dependencyObject) where TDependencyObject : DependencyObject
+        public static Dictionary<string, string?>? TextDictionary<TDependencyObject>(this DependencyObject? dependencyObject) where TDependencyObject : DependencyObject
         {
             if(dependencyObject == null)
             {
                 return null;
             }
 
-            Dictionary<string, string?>? result = new Dictionary<string, string?>();
+            Dictionary<string, string?>? result = [];
 
             List<TDependencyObject>? dependencyObjects = DependencyObjects<TDependencyObject>(dependencyObject, true);
             if(dependencyObjects == null)
@@ -46,14 +46,14 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static Dictionary<string, string?>? TextDictionary<TControl>(this Control control) where TControl : Control
+        public static Dictionary<string, string?>? TextDictionary<TControl>(this Control? control) where TControl : Control
         {
             if (control == null)
             {
                 return null;
             }
 
-            Dictionary<string, string?>? result = new Dictionary<string, string?>();
+            Dictionary<string, string?>? result = [];
 
             List<TControl>? controls = Controls<TControl>(control);
             if (controls == null)
@@ -87,7 +87,7 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static Dictionary<string, string?>? TextDictionary(this DataGridView dataGridView)
+        public static Dictionary<string, string?>? TextDictionary(this DataGridView? dataGridView)
         {
             DataGridViewColumnCollection? dataGridViewColumnCollection = dataGridView?.Columns;
 
@@ -96,7 +96,7 @@ namespace DiGi.Translate.WPF
                 return null;
             }
 
-            Dictionary<string, string?>? result = new Dictionary<string, string?>();
+            Dictionary<string, string?>? result = [];
             foreach (DataGridViewColumn dataGridViewColumn in dataGridViewColumnCollection)
             {
                 string? id = dataGridViewColumn?.Id();
@@ -105,32 +105,31 @@ namespace DiGi.Translate.WPF
                     continue;
                 }
 
-                result[id] = dataGridViewColumn.HeaderText;
+                result[id] = dataGridViewColumn!.HeaderText;
 
             }
 
             return result;
         }
 
-        public static Dictionary<string, string?>? TextDictionary(this System.Windows.Controls.DataGrid dataGrid)
+        public static Dictionary<string, string?>? TextDictionary(this System.Windows.Controls.DataGrid? dataGrid)
         {
-            ObservableCollection<System.Windows.Controls.DataGridColumn> dataGridColumns = dataGrid?.Columns;
-
+            ObservableCollection<System.Windows.Controls.DataGridColumn>? dataGridColumns = dataGrid?.Columns;
             if (dataGridColumns == null)
             {
                 return null;
             }
 
-            Dictionary<string, string?>? result = new Dictionary<string, string?>();
+            Dictionary<string, string?>? result = [];
             foreach (System.Windows.Controls.DataGridColumn dataGridColumn in dataGridColumns)
             {
-                string id = dataGridColumn?.Id(dataGrid);
+                string? id = dataGridColumn?.Id(dataGrid!);
                 if (string.IsNullOrWhiteSpace(id))
                 {
                     continue;
                 }
 
-                result[id] = dataGridColumn.Text();
+                result[id] = dataGridColumn!.Text();
             }
 
             return result;

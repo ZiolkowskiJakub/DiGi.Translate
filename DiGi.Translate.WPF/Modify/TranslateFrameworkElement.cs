@@ -6,26 +6,30 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
-        public static bool TranslateFrameworkElement(this Translator translator, FrameworkElement frameworkElement, bool includeNested = true)
+        public static bool TranslateFrameworkElement(this Translator? translator, FrameworkElement? frameworkElement, bool includeNested = true)
         {
             if (frameworkElement == null || translator == null)
             {
                 return false;
             }
 
-            string id = frameworkElement.Id();
+            string? id = frameworkElement.Id();
             if (id == null)
             {
                 return false;
             }
 
-            bool result = translator.TryGetText(Enums.Category.Control, id, out string text);
+            bool result = translator.TryGetText(Enums.Category.Control, id, out string? text);
             if (!result)
             {
                 return result;
             }
 
-            frameworkElement.SetText(text);
+            if(text is not null)
+            {
+                frameworkElement.SetText(text);
+                result = false;
+            }
 
             if (!includeNested)
             {
@@ -44,7 +48,7 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
-        public static bool TranslateFrameworkElement(this TranslationModel translationModel, Language language, FrameworkElement frameworkElement, bool includeNested = true)
+        public static bool TranslateFrameworkElement(this TranslationModel? translationModel, Language? language, FrameworkElement? frameworkElement, bool includeNested = true)
         {
             if (frameworkElement == null || translationModel == null)
             {
@@ -59,8 +63,8 @@ namespace DiGi.Translate.WPF
                 return false;
             }
 
-            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string text);
-            if (result)
+            bool result = translationModel.TryGetText(Enums.Category.Control, id, language, out string? text);
+            if (result && text is not null)
             {
                 frameworkElement.SetText(text);
             }
@@ -87,7 +91,7 @@ namespace DiGi.Translate.WPF
             {
                 System.Windows.Controls.DataGrid dataGrid = (System.Windows.Controls.DataGrid)(object)frameworkElement;
 
-                ObservableCollection<System.Windows.Controls.DataGridColumn> dataGridColumns = dataGrid?.Columns;
+                ObservableCollection<System.Windows.Controls.DataGridColumn>? dataGridColumns = dataGrid.Columns;
                 if (dataGridColumns != null)
                 {
                     foreach (System.Windows.Controls.DataGridColumn dataGridColumn in dataGridColumns)
@@ -98,7 +102,7 @@ namespace DiGi.Translate.WPF
                             continue;
                         }
 
-                        if (!translationModel.TryGetText(Enums.Category.Control, id, language, out text))
+                        if (!translationModel.TryGetText(Enums.Category.Control, id, language, out text) || text is null)
                         {
                             continue;
                         }
