@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-
 namespace DiGi.Translate.Framework
 {
     public static partial class Query
     {
-
         public static List<TDependencyObject> DependencyObjects<TDependencyObject>(this DependencyObject dependencyObject, bool includeNested = true) where TDependencyObject : DependencyObject
         {
             System.Collections.IEnumerable childrens = LogicalTreeHelper.GetChildren(dependencyObject);

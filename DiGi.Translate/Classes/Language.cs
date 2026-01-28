@@ -1,5 +1,4 @@
-﻿
-namespace DiGi.Translate.Classes
+﻿namespace DiGi.Translate.Classes
 {
     public class Language
     {
@@ -20,7 +19,7 @@ namespace DiGi.Translate.Classes
             Name = language.ToString();
         }
 
-        public override string ToString() 
+        public override string ToString()
         {
             return Name;
         }
@@ -44,7 +43,7 @@ namespace DiGi.Translate.Classes
         {
             return new Language(language);
         }
-        
+
         public static bool operator ==(Language language_1, Language language_2)
         {
             if (Equals(language_1, language_2))
@@ -64,7 +63,7 @@ namespace DiGi.Translate.Classes
 
             return language_1.Name == language_2.Name;
         }
-        
+
         public static bool operator !=(Language language_1, Language language_2)
         {
             return language_1?.Name != language_2?.Name;

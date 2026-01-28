@@ -43,9 +43,7 @@ namespace DiGi.Translate.WPF.Application.Windows
 
             Modify.TranslateWindow(translationModel, Enums.Language.German, this);
 
-
             //string path = @"C:\Users\jakub\Downloads\translationModel.txt";
-
 
             //TranslationModel translationModel = new TranslationModel();
 
@@ -62,7 +60,6 @@ namespace DiGi.Translate.WPF.Application.Windows
 
             //    translationModel.Add(Enums.Language.English, testForm, false, true);
             //    translationModel.Add(Enums.Category.Control, "TestForm.dataGridView1.Column1_Test", Enums.Language.English, "AAAA");
-
 
             //    translationModel.TranslateControl(Enums.Language.English, testForm);
 

@@ -12,11 +12,11 @@ namespace DiGi.Translate.WPF
             }
 
             string result = control.Name;
-            if(string.IsNullOrWhiteSpace(result))
+            if (string.IsNullOrWhiteSpace(result))
             {
                 result = control.GetType().Name;
             }
-                
+
             if (control.Parent != null)
             {
                 string? id = control.Parent.Id();
@@ -31,23 +31,23 @@ namespace DiGi.Translate.WPF
 
         public static string? Id(this DependencyObject? dependencyObject)
         {
-            if(dependencyObject == null)
+            if (dependencyObject == null)
             {
                 return null;
             }
 
             string? result = (dependencyObject as FrameworkElement)?.Name;
-            if(string.IsNullOrWhiteSpace(result))
+            if (string.IsNullOrWhiteSpace(result))
             {
                 result = dependencyObject.GetType().Name;
-                if(TryGetIndex(dependencyObject, out int index))
+                if (TryGetIndex(dependencyObject, out int index))
                 {
                     result = string.Format("{0}_{1}", result, index);
                 }
             }
 
             DependencyObject? dependencyObject_Parent = LogicalTreeHelper.GetParent(dependencyObject);
-            if(dependencyObject_Parent != null)
+            if (dependencyObject_Parent != null)
             {
                 string? id = dependencyObject_Parent.Id();
                 if (!string.IsNullOrEmpty(id))
@@ -61,7 +61,7 @@ namespace DiGi.Translate.WPF
 
         public static string? Id(this DataGridViewColumn? dataGridViewColumn)
         {
-            if (dataGridViewColumn == null) 
+            if (dataGridViewColumn == null)
             {
                 return null;
             }
@@ -73,7 +73,7 @@ namespace DiGi.Translate.WPF
 
         public static string? Id(this System.Windows.Controls.DataGridColumn dataGridColumn, System.Windows.Controls.DataGrid dataGrid)
         {
-            if(dataGridColumn == null)
+            if (dataGridColumn == null)
             {
                 return null;
             }
@@ -84,14 +84,12 @@ namespace DiGi.Translate.WPF
                 return null;
             }
 
-            if(!TryGetIndex(dataGridColumn, dataGrid, out int index) || index == -1)
+            if (!TryGetIndex(dataGridColumn, dataGrid, out int index) || index == -1)
             {
                 index = dataGridColumn.DisplayIndex;
             }
 
             return string.Format("{0}.{1}_{2}", id, dataGridColumn.GetType().Name, index);
-
-
         }
     }
 }

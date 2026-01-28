@@ -9,13 +9,13 @@ namespace DiGi.Translate.WPF
         {
             index = -1;
 
-            if(dependencyObject == null)
+            if (dependencyObject == null)
             {
                 return false;
             }
 
             DependencyObject? dependencyObject_Parent = LogicalTreeHelper.GetParent(dependencyObject);
-            if(dependencyObject_Parent == null)
+            if (dependencyObject_Parent == null)
             {
                 return false;
             }
@@ -29,14 +29,14 @@ namespace DiGi.Translate.WPF
             Type type = dependencyObject.GetType();
 
             index = 1;
-            foreach(object children in childrens)
+            foreach (object children in childrens)
             {
                 if (children?.GetType() != type)
                 {
                     continue;
                 }
 
-                if(children == dependencyObject)
+                if (children == dependencyObject)
                 {
                     return true;
                 }
@@ -78,4 +78,3 @@ namespace DiGi.Translate.WPF
         }
     }
 }
-

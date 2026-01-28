@@ -77,7 +77,7 @@ namespace DiGi.Translate.Framework
                 foreach (FrameworkElement frameworkElement_Nested in frameworkElements_Nested)
                 {
                     bool translated = TranslateFrameworkElement(translationModel, language, frameworkElement_Nested, includeNested);
-                    if(translated)
+                    if (translated)
                     {
                         result = true;
                     }

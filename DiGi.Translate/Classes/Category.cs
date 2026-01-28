@@ -1,5 +1,4 @@
-﻿
-namespace DiGi.Translate.Classes
+﻿namespace DiGi.Translate.Classes
 {
     public class Category
     {
@@ -20,7 +19,7 @@ namespace DiGi.Translate.Classes
             Name = category.ToString();
         }
 
-        public override string ToString() 
+        public override string ToString()
         {
             return Name;
         }

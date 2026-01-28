@@ -15,7 +15,7 @@
         {
             text = null;
 
-            if(translationModel is null || category is null || id is null)
+            if (translationModel is null || category is null || id is null)
             {
                 return false;
             }
@@ -26,7 +26,7 @@
         public bool TryGetText(string? category, string? id, out string? text)
         {
             text = null;
-            if(category is null || id is null)
+            if (category is null || id is null)
             {
                 return false;
             }

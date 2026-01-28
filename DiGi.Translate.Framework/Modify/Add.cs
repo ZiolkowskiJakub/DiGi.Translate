@@ -1,6 +1,5 @@
 ﻿using DiGi.Translate.Classes;
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace DiGi.Translate.Framework
@@ -40,10 +39,10 @@ namespace DiGi.Translate.Framework
                     }
                 }
 
-                if(control is DataGridView)
+                if (control is DataGridView)
                 {
                     dictionary = Query.TextDictionary((DataGridView)control);
-                    if(dictionary != null)
+                    if (dictionary != null)
                     {
                         foreach (KeyValuePair<string, string> keyValuePair in dictionary)
                         {

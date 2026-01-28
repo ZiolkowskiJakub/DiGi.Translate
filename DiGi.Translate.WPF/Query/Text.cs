@@ -24,7 +24,7 @@ namespace DiGi.Translate.WPF
                 Window window = (Window)dependencyObject;
                 result = window.Title;
             }
-            else if(dependencyObject is DataGridColumn)
+            else if (dependencyObject is DataGridColumn)
             {
                 object header = ((DataGridColumn)dependencyObject).Header;
 
@@ -71,7 +71,7 @@ namespace DiGi.Translate.WPF
                 }
             }
 
-            if(!string.IsNullOrWhiteSpace(result))
+            if (!string.IsNullOrWhiteSpace(result))
             {
                 result = result.Replace("\\n", "\n");
             }
@@ -80,4 +80,3 @@ namespace DiGi.Translate.WPF
         }
     }
 }
-

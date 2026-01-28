@@ -8,20 +8,20 @@ namespace DiGi.Translate
     {
         public static bool Read(this TranslationModel? translationModel, string? path)
         {
-            if(translationModel == null)
+            if (translationModel == null)
             {
                 return false;
             }
 
             Table table = new();
 
-            if(!Core.IO.DelimitedData.Modify.Read(table, path, Core.IO.DelimitedData.Enums.DelimitedDataSeparator.Tab))
+            if (!Core.IO.DelimitedData.Modify.Read(table, path, Core.IO.DelimitedData.Enums.DelimitedDataSeparator.Tab))
             {
                 return false;
             }
 
             int index_Category = table.GetColumnIndex(Constans.ColumnName.Category);
-            if(index_Category == -1)
+            if (index_Category == -1)
             {
                 return false;
             }
@@ -35,13 +35,13 @@ namespace DiGi.Translate
             Dictionary<int, Language> dictionary = [];
             for (int i = 0; i < table.ColumnCount; i++)
             {
-                if(i == index_Category || i == index_Id)
+                if (i == index_Category || i == index_Id)
                 {
                     continue;
                 }
 
                 string? languageName = table.GetColumn(i)?.Name;
-                if(string.IsNullOrWhiteSpace(languageName))
+                if (string.IsNullOrWhiteSpace(languageName))
                 {
                     continue;
                 }
@@ -49,7 +49,7 @@ namespace DiGi.Translate
                 dictionary[i] = languageName!;
             }
 
-            if(dictionary.Count == 0)
+            if (dictionary.Count == 0)
             {
                 return false;
             }
@@ -76,7 +76,7 @@ namespace DiGi.Translate
 
                 string? id = value;
 
-                foreach(KeyValuePair<int, Language> keyValuePair in dictionary)
+                foreach (KeyValuePair<int, Language> keyValuePair in dictionary)
                 {
                     string? text = row[keyValuePair.Key]?.ToString();
                     if (!string.IsNullOrWhiteSpace(text))
@@ -85,7 +85,7 @@ namespace DiGi.Translate
                     }
 
                     bool added = translationModel.Add(category, id, keyValuePair.Value, text);
-                    if(added)
+                    if (added)
                     {
                         result = true;
                     }
@@ -96,4 +96,3 @@ namespace DiGi.Translate
         }
     }
 }
-

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 
-
 namespace DiGi.Translate.WPF
 {
     public static partial class Query

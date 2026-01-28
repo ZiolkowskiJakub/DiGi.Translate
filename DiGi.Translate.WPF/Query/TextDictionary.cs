@@ -7,7 +7,7 @@ namespace DiGi.Translate.WPF
     {
         public static Dictionary<string, string?>? TextDictionary<TDependencyObject>(this DependencyObject? dependencyObject) where TDependencyObject : DependencyObject
         {
-            if(dependencyObject == null)
+            if (dependencyObject == null)
             {
                 return null;
             }
@@ -15,7 +15,7 @@ namespace DiGi.Translate.WPF
             Dictionary<string, string?>? result = [];
 
             List<TDependencyObject>? dependencyObjects = DependencyObjects<TDependencyObject>(dependencyObject, true);
-            if(dependencyObjects == null)
+            if (dependencyObjects == null)
             {
                 return null;
             }
@@ -23,14 +23,14 @@ namespace DiGi.Translate.WPF
             foreach (TDependencyObject dependencyObject_Temp in dependencyObjects)
             {
                 string? id = dependencyObject_Temp?.Id();
-                if(id == null)
+                if (id == null)
                 {
                     continue;
                 }
 
                 result[id] = dependencyObject_Temp?.Text();
 
-                if(dependencyObject_Temp is System.Windows.Controls.DataGrid)
+                if (dependencyObject_Temp is System.Windows.Controls.DataGrid)
                 {
                     Dictionary<string, string?>? dictionary = TextDictionary((System.Windows.Controls.DataGrid)(object)dependencyObject_Temp);
                     if (dictionary != null)
@@ -71,12 +71,12 @@ namespace DiGi.Translate.WPF
 
                 result[id] = control_Temp?.Text;
 
-                if(control_Temp is DataGridView)
+                if (control_Temp is DataGridView)
                 {
                     Dictionary<string, string?>? dictionary = TextDictionary((DataGridView)(object)control_Temp);
-                    if(dictionary != null)
+                    if (dictionary != null)
                     {
-                        foreach(KeyValuePair<string, string?> keyValuePair in dictionary)
+                        foreach (KeyValuePair<string, string?> keyValuePair in dictionary)
                         {
                             result[keyValuePair.Key] = keyValuePair.Value;
                         }
@@ -91,7 +91,7 @@ namespace DiGi.Translate.WPF
         {
             DataGridViewColumnCollection? dataGridViewColumnCollection = dataGridView?.Columns;
 
-            if(dataGridViewColumnCollection == null)
+            if (dataGridViewColumnCollection == null)
             {
                 return null;
             }
@@ -100,13 +100,12 @@ namespace DiGi.Translate.WPF
             foreach (DataGridViewColumn dataGridViewColumn in dataGridViewColumnCollection)
             {
                 string? id = dataGridViewColumn?.Id();
-                if(string.IsNullOrWhiteSpace(id))
+                if (string.IsNullOrWhiteSpace(id))
                 {
                     continue;
                 }
 
                 result[id] = dataGridViewColumn!.HeaderText;
-
             }
 
             return result;

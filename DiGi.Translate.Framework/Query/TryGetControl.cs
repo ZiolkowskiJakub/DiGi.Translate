@@ -45,7 +45,6 @@ namespace DiGi.Translate.Framework
                     }
                 }
 
-
                 List<string> values = id.Split('.')?.ToList();
                 if (values.Count > 1)
                 {
@@ -63,7 +62,6 @@ namespace DiGi.Translate.Framework
                         }
                     }
                 }
-
             }
 
             return false;

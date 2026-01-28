@@ -7,7 +7,7 @@ namespace DiGi.Translate
     {
         public static bool AddText(this TranslationModel? translationModel, Language? language, string? text, Func<string?, string?>? func = null)
         {
-            if(translationModel is null || language is null)
+            if (translationModel is null || language is null)
             {
                 return false;
             }
@@ -18,4 +18,3 @@ namespace DiGi.Translate
         }
     }
 }
-

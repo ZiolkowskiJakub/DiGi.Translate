@@ -34,7 +34,7 @@ namespace DiGi.Translate.Framework
 
             return result;
         }
-        
+
         public static string Id(this Control control)
         {
             if (control == null)
@@ -91,8 +91,6 @@ namespace DiGi.Translate.Framework
             }
 
             return string.Format("{0}.{1}_{2}", id, dataGridColumn.GetType().Name, index);
-
-
         }
     }
 }

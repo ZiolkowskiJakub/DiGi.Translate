@@ -13,7 +13,7 @@ namespace DiGi.Translate
                 return null;
             }
 
-            Table result = new ();
+            Table result = new();
 
             HashSet<Language> languages = translationModel.GetLanguages();
             if (languages != null)
@@ -37,9 +37,9 @@ namespace DiGi.Translate
                                 { Constans.ColumnName.Id, id }
                             };
 
-                            foreach(Language language in languages)
+                            foreach (Language language in languages)
                             {
-                                if(!translationModel.TryGetText(category, id, language, out string? text) || text == null)
+                                if (!translationModel.TryGetText(category, id, language, out string? text) || text == null)
                                 {
                                     text = string.Empty;
                                 }
@@ -59,4 +59,3 @@ namespace DiGi.Translate
         }
     }
 }
-

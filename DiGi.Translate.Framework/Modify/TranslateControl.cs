@@ -27,15 +27,15 @@ namespace DiGi.Translate.Framework
 
             control.Text = text;
 
-            if(!includeNested)
+            if (!includeNested)
             {
                 return result;
             }
 
             List<Control> controls_Nested = Query.Controls<Control>(control);
-            if(controls_Nested != null)
+            if (controls_Nested != null)
             {
-                foreach(Control control_Nested in controls_Nested)
+                foreach (Control control_Nested in controls_Nested)
                 {
                     TranslateControl(translator, control_Nested, includeNested);
                 }

@@ -1,7 +1,4 @@
-﻿using DiGi.Core;
-using DiGi.Core.Enums;
-using System.Windows;
-
+﻿using DiGi.Core.Enums;
 
 namespace DiGi.Translate.WPF
 {

@@ -26,12 +26,12 @@ namespace DiGi.Translate.WPF
 
             result = false;
 
-            if(text is not null)
+            if (text is not null)
             {
                 window.SetText(text);
                 result = true;
             }
-            
+
             if (!includeNested)
             {
                 return result;
@@ -66,7 +66,7 @@ namespace DiGi.Translate.WPF
             if (result)
             {
                 result = false;
-                if(text is not null)
+                if (text is not null)
                 {
                     window.SetText(text);
                     result = true;
@@ -84,7 +84,7 @@ namespace DiGi.Translate.WPF
                 foreach (FrameworkElement frameworkElement_Nested in frameworkElements_Nested)
                 {
                     bool translated = TranslateFrameworkElement(translationModel, language, frameworkElement_Nested, includeNested);
-                    if(translated)
+                    if (translated)
                     {
                         result = true;
                     }

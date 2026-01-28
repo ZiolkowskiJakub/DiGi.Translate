@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace DiGi.Translate.WPF.Application.Forms
+﻿namespace DiGi.Translate.WPF.Application.Forms
 {
     public partial class TestForm : Form
     {
@@ -19,7 +9,6 @@ namespace DiGi.Translate.WPF.Application.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

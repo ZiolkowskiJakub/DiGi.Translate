@@ -72,15 +72,13 @@ namespace DiGi.Translate.Framework
                 return result;
             }
 
-
-
             List<Control> controls = form.Controls();
             if (controls != null)
             {
                 foreach (Control control in controls)
                 {
                     bool translated = TranslateControl(translationModel, language, control, includeNested);
-                    if(translated)
+                    if (translated)
                     {
                         result = true;
                     }

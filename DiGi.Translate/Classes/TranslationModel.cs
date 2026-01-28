@@ -8,21 +8,20 @@ namespace DiGi.Translate.Classes
     {
         private readonly Dictionary<Category, SortedDictionary<string, Translation>> dictionary = [];
 
-        public TranslationModel() 
+        public TranslationModel()
         {
-            
         }
 
         public HashSet<Language>? Add(Translation? translation)
         {
             Category? category = translation?.Category;
-            if(category is null)
+            if (category is null)
             {
                 return null;
             }
 
             string? id = translation?.Id;
-            if(id == null)
+            if (id == null)
             {
                 return null;
             }
@@ -36,12 +35,10 @@ namespace DiGi.Translate.Classes
             Dictionary<Language, string> dictionary = [];
             foreach (Language language in languages)
             {
-                if(translation[language] is string translationText)
+                if (translation[language] is string translationText)
                 {
                     dictionary[language] = translationText;
                 }
-
- 
             }
 
             return Add(category, id, dictionary);
@@ -49,13 +46,13 @@ namespace DiGi.Translate.Classes
 
         public bool Add(Category? category, string? id, Language? language, string? text)
         {
-            if(category is null || id is null || language is null || text is null)
+            if (category is null || id is null || language is null || text is null)
             {
                 return false;
             }
 
             HashSet<Language>? languages = Add(category, id, [new KeyValuePair<Language, string>(language, text)]);
-            if(languages == null || languages.Count == 0)
+            if (languages == null || languages.Count == 0)
             {
                 return false;
             }
@@ -93,9 +90,9 @@ namespace DiGi.Translate.Classes
             }
 
             HashSet<Language> result = [];
-            foreach(KeyValuePair<Language, string> keyValuePair in keyValuePairs)
+            foreach (KeyValuePair<Language, string> keyValuePair in keyValuePairs)
             {
-                if(translation.Add(keyValuePair.Key, keyValuePair.Value))
+                if (translation.Add(keyValuePair.Key, keyValuePair.Value))
                 {
                     result.Add(keyValuePair.Key);
                 }
@@ -113,12 +110,12 @@ namespace DiGi.Translate.Classes
                 return false;
             }
 
-            if(!dictionary.TryGetValue(category, out SortedDictionary<string, Translation> sortedDictionary) || sortedDictionary is null)
+            if (!dictionary.TryGetValue(category, out SortedDictionary<string, Translation> sortedDictionary) || sortedDictionary is null)
             {
                 return false;
             }
 
-            if(!sortedDictionary.TryGetValue(id, out Translation translation) || translation is null)
+            if (!sortedDictionary.TryGetValue(id, out Translation translation) || translation is null)
             {
                 return false;
             }
@@ -152,16 +149,15 @@ namespace DiGi.Translate.Classes
                 return false;
             }
 
-            foreach(KeyValuePair<string, Translation> keyValuePair in sortedDictionary)
+            foreach (KeyValuePair<string, Translation> keyValuePair in sortedDictionary)
             {
                 Translation translation = keyValuePair.Value;
-                if(translation == null)
+                if (translation == null)
                 {
                     continue;
                 }
 
-
-                if(Core.Query.Compare(translation[language], text, textComparisonType, caseSensitive))
+                if (Core.Query.Compare(translation[language], text, textComparisonType, caseSensitive))
                 {
                     id = keyValuePair.Key;
                     return true;
@@ -180,7 +176,7 @@ namespace DiGi.Translate.Classes
         {
             text = null;
 
-            if(@enum == null || language == null)
+            if (@enum == null || language == null)
             {
                 return false;
             }
@@ -188,18 +184,18 @@ namespace DiGi.Translate.Classes
             return TryGetText(new Category(Enums.Category.Enum), Core.Query.FullName(@enum), new Language(language), out text);
         }
 
-        public bool TryGetEnum<T>(string? text, string? language, out T? @enum, Core.Enums.TextComparisonType textComparisonType = Core.Enums.TextComparisonType.Equals, bool caseSensitive = true) where T: Enum
+        public bool TryGetEnum<T>(string? text, string? language, out T? @enum, Core.Enums.TextComparisonType textComparisonType = Core.Enums.TextComparisonType.Equals, bool caseSensitive = true) where T : Enum
         {
             @enum = default;
 
-            if(language == null)
+            if (language == null)
             {
                 return false;
             }
 
             foreach (T @enum_Temp in Enum.GetValues(typeof(T)))
             {
-                if(!TryGetText(enum_Temp, language, out string? text_Temp))
+                if (!TryGetText(enum_Temp, language, out string? text_Temp))
                 {
                     continue;
                 }
@@ -229,7 +225,7 @@ namespace DiGi.Translate.Classes
             HashSet<Language> result = [];
             foreach (SortedDictionary<string, Translation> sortedDictionary in dictionary.Values)
             {
-                foreach(Translation translation in sortedDictionary.Values)
+                foreach (Translation translation in sortedDictionary.Values)
                 {
                     HashSet<Language>? languages = translation?.Languages;
                     if (languages == null)
@@ -237,7 +233,7 @@ namespace DiGi.Translate.Classes
                         continue;
                     }
 
-                    foreach(Language language in languages)
+                    foreach (Language language in languages)
                     {
                         result.Add(language);
                     }
@@ -249,7 +245,7 @@ namespace DiGi.Translate.Classes
 
         public HashSet<Language>? GetLanguages(Category? category)
         {
-            if(category is null)
+            if (category is null)
             {
                 return null;
             }
@@ -257,7 +253,7 @@ namespace DiGi.Translate.Classes
             HashSet<Language> result = [];
             foreach (KeyValuePair<Category, SortedDictionary<string, Translation>> keyValuePair in dictionary)
             {
-                if(category != keyValuePair.Key)
+                if (category != keyValuePair.Key)
                 {
                     continue;
                 }
@@ -282,12 +278,12 @@ namespace DiGi.Translate.Classes
 
         public HashSet<string>? GetIds(Category? category)
         {
-            if(category is null)
+            if (category is null)
             {
                 return null;
             }
 
-            if(!dictionary.TryGetValue(category, out SortedDictionary<string, Translation> sortedDictionary) || sortedDictionary == null)
+            if (!dictionary.TryGetValue(category, out SortedDictionary<string, Translation> sortedDictionary) || sortedDictionary == null)
             {
                 return null;
             }

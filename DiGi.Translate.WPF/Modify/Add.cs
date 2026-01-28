@@ -7,13 +7,13 @@ namespace DiGi.Translate.WPF
     {
         public static bool Add(this TranslationModel translationModel, Language language, DependencyObject dependencyObject, bool includeNullOrEmpty = false, bool includeNested = true)
         {
-            if(translationModel is null || language is null || dependencyObject is null)
+            if (translationModel is null || language is null || dependencyObject is null)
             {
                 return false;
             }
 
             string? id = dependencyObject.Id();
-            if(id != null)
+            if (id != null)
             {
                 string? text = dependencyObject.Text();
                 if (!(!includeNullOrEmpty && string.IsNullOrEmpty(text)))
@@ -25,9 +25,9 @@ namespace DiGi.Translate.WPF
             if (includeNested)
             {
                 Dictionary<string, string?>? dictionary = Query.TextDictionary<FrameworkElement>(dependencyObject);
-                if(dictionary != null)
+                if (dictionary != null)
                 {
-                    foreach(KeyValuePair<string, string?> keyValuePair in dictionary)
+                    foreach (KeyValuePair<string, string?> keyValuePair in dictionary)
                     {
                         if (!includeNullOrEmpty && string.IsNullOrEmpty(keyValuePair.Value))
                         {
@@ -75,10 +75,10 @@ namespace DiGi.Translate.WPF
                     }
                 }
 
-                if(control is DataGridView dataGridView)
+                if (control is DataGridView dataGridView)
                 {
                     dictionary = Query.TextDictionary(dataGridView);
-                    if(dictionary != null)
+                    if (dictionary != null)
                     {
                         foreach (KeyValuePair<string, string?> keyValuePair in dictionary)
                         {

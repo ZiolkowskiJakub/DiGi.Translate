@@ -25,7 +25,7 @@ namespace DiGi.Translate.WPF
                 return result;
             }
 
-            if(text is not null)
+            if (text is not null)
             {
                 frameworkElement.SetText(text);
                 result = false;
@@ -80,7 +80,7 @@ namespace DiGi.Translate.WPF
                 foreach (FrameworkElement frameworkElement_Nested in frameworkElements_Nested)
                 {
                     bool translated = TranslateFrameworkElement(translationModel, language, frameworkElement_Nested, includeNested);
-                    if(translated)
+                    if (translated)
                     {
                         result = true;
                     }

@@ -30,12 +30,12 @@ namespace DiGi.Translate.Framework
 
                 result[id] = control_Temp?.Text;
 
-                if(control_Temp is DataGridView)
+                if (control_Temp is DataGridView)
                 {
                     Dictionary<string, string> dictionary = TextDictionary((DataGridView)(object)control_Temp);
-                    if(dictionary != null)
+                    if (dictionary != null)
                     {
-                        foreach(KeyValuePair<string, string> keyValuePair in dictionary)
+                        foreach (KeyValuePair<string, string> keyValuePair in dictionary)
                         {
                             result[keyValuePair.Key] = keyValuePair.Value;
                         }
@@ -50,7 +50,7 @@ namespace DiGi.Translate.Framework
         {
             DataGridViewColumnCollection dataGridViewColumnCollection = dataGridView?.Columns;
 
-            if(dataGridViewColumnCollection == null)
+            if (dataGridViewColumnCollection == null)
             {
                 return null;
             }
@@ -59,13 +59,12 @@ namespace DiGi.Translate.Framework
             foreach (DataGridViewColumn dataGridViewColumn in dataGridViewColumnCollection)
             {
                 string id = dataGridViewColumn.Id();
-                if(string.IsNullOrWhiteSpace(id))
+                if (string.IsNullOrWhiteSpace(id))
                 {
                     continue;
                 }
 
                 result[id] = dataGridViewColumn.HeaderText;
-
             }
 
             return result;
