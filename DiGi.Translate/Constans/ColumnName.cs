@@ -1,4 +1,4 @@
-﻿namespace DiGi.Translate.Constans
+﻿namespace DiGi.Translate.Constants
 {
     public static class ColumnName
     {

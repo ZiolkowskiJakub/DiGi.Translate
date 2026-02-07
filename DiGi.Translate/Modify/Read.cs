@@ -20,13 +20,13 @@ namespace DiGi.Translate
                 return false;
             }
 
-            int index_Category = table.GetColumnIndex(Constans.ColumnName.Category);
+            int index_Category = table.GetColumnIndex(Constants.ColumnName.Category);
             if (index_Category == -1)
             {
                 return false;
             }
 
-            int index_Id = table.GetColumnIndex(Constans.ColumnName.Id);
+            int index_Id = table.GetColumnIndex(Constants.ColumnName.Id);
             if (index_Id == -1)
             {
                 return false;

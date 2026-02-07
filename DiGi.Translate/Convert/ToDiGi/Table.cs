@@ -33,8 +33,8 @@ namespace DiGi.Translate
                         {
                             Dictionary<string, object> dictionary = new()
                             {
-                                { Constans.ColumnName.Category, category.ToString() },
-                                { Constans.ColumnName.Id, id }
+                                { Constants.ColumnName.Category, category.ToString() },
+                                { Constants.ColumnName.Id, id }
                             };
 
                             foreach (Language language in languages)
