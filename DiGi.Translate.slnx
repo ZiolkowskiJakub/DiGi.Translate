@@ -3,8 +3,8 @@
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
   </Folder>
-  <Project Path="DiGi.Translate.Framework.Application/DiGi.Translate.Framework.Application.csproj" />
-  <Project Path="DiGi.Translate.Framework/DiGi.Translate.Framework.csproj" />
+  <Project Path="DiGi.Translate.Framework.Application/DiGi.Translate.Framework.Application.csproj" Id="ffa0ef11-02ca-4286-87c4-355f733f9613" />
+  <Project Path="DiGi.Translate.Framework/DiGi.Translate.Framework.csproj" Id="fcb580f6-82e4-4217-a762-0c9700a46b93" />
   <Project Path="DiGi.Translate.WPF.Application/DiGi.Translate.WPF.Application.csproj" />
   <Project Path="DiGi.Translate.WPF/DiGi.Translate.WPF.csproj" />
   <Project Path="DiGi.Translate/DiGi.Translate.csproj" />
