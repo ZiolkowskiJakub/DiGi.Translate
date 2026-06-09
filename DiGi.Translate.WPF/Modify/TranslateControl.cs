@@ -4,6 +4,13 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Translates the specified WPF control using the provided translator instance.
+        /// </summary>
+        /// <param name="translator">The <see cref="Translator"/> used to retrieve translated text.</param>
+        /// <param name="control">The <see cref="Control"/> to be translated.</param>
+        /// <param name="includeNested">A value indicating whether the translation should be applied recursively to nested child controls.</param>
+        /// <returns><see langword="true"/> if the control was successfully translated; otherwise, <see langword="false"/>.</returns>
         public static bool TranslateControl(this Translator? translator, Control? control, bool includeNested = true)
         {
             if (control == null || translator == null)
@@ -59,6 +66,14 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
+        /// <summary>
+        /// Translates the text of a specified control using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model used to retrieve translated text.</param>
+        /// <param name="language">The target language for the translation.</param>
+        /// <param name="control">The control whose text is to be translated.</param>
+        /// <param name="includeNested">A value indicating whether to translate nested controls within the specified control.</param>
+        /// <returns>True if the control was successfully translated; otherwise, false.</returns>
         public static bool TranslateControl(this TranslationModel? translationModel, Language? language, Control? control, bool includeNested = true)
         {
             if (translationModel is null || control is null || language is null)
@@ -111,6 +126,14 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
+        /// <summary>
+        /// Translates the specified WPF control and optionally its nested children using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model containing the localized strings.</param>
+        /// <param name="language">The target language to apply for the translation.</param>
+        /// <param name="control">The WPF control to be translated.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested controls within the specified control.</param>
+        /// <returns>True if the translation process was successful; otherwise, false.</returns>
         public static bool TranslateControl(this TranslationModel? translationModel, Enums.Language language, Control? control, bool includeNested = true)
         {
             return TranslateControl(translationModel, (Language)language, control, includeNested);

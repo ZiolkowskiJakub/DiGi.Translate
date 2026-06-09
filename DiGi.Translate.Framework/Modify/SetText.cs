@@ -5,6 +5,12 @@ namespace DiGi.Translate.Framework
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Sets the text content of the specified dependency object if it supports a text property.
+        /// </summary>
+        /// <param name="dependencyObject">The <see cref="DependencyObject"/> whose text is to be set.</param>
+        /// <param name="text">The string value to assign as the text.</param>
+        /// <returns>True if the text was successfully set; otherwise, false.</returns>
         public static bool SetText(this DependencyObject dependencyObject, string text)
         {
             if (dependencyObject == null)

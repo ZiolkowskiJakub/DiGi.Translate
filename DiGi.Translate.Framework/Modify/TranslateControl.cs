@@ -6,6 +6,13 @@ namespace DiGi.Translate.Framework
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Translates the specified control and optionally its nested children using the provided translator.
+        /// </summary>
+        /// <param name="translator">The translator instance used to retrieve translated text.</param>
+        /// <param name="control">The control to be translated.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate child controls.</param>
+        /// <returns>True if the translation process was successful; otherwise, false.</returns>
         public static bool TranslateControl(this Translator translator, Control control, bool includeNested = true)
         {
             if (control == null || translator == null)
@@ -44,6 +51,14 @@ namespace DiGi.Translate.Framework
             return result;
         }
 
+        /// <summary>
+        /// Translates the text of the specified control using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model used to retrieve translated text.</param>
+        /// <param name="language">The target language for the translation.</param>
+        /// <param name="control">The control whose text is to be translated.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested controls.</param>
+        /// <returns>True if the control's text was successfully translated; otherwise, false.</returns>
         public static bool TranslateControl(this TranslationModel translationModel, Language language, Control control, bool includeNested = true)
         {
             if (translationModel == null || control == null || language == null)
@@ -96,6 +111,14 @@ namespace DiGi.Translate.Framework
             return result;
         }
 
+        /// <summary>
+        /// Translates the specified control and optionally its nested children using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model used to retrieve translated text.</param>
+        /// <param name="language">The target language for the translation.</param>
+        /// <param name="control">The control to be translated.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested controls.</param>
+        /// <returns>True if the translation process was successful; otherwise, false.</returns>
         public static bool TranslateControl(this TranslationModel translationModel, Enums.Language language, Control control, bool includeNested = true)
         {
             return TranslateControl(translationModel, (Language)language, control, includeNested);

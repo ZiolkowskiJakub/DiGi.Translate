@@ -6,6 +6,13 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Translates the specified framework element using the provided translator based on its identifier.
+        /// </summary>
+        /// <param name="translator">The <see cref="Translator"/> instance used to retrieve translated text.</param>
+        /// <param name="frameworkElement">The <see cref="FrameworkElement"/> to be translated.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested child elements.</param>
+        /// <returns><see langword="true"/> if the element was successfully translated; otherwise, <see langword="false"/>.</returns>
         public static bool TranslateFrameworkElement(this Translator? translator, FrameworkElement? frameworkElement, bool includeNested = true)
         {
             if (frameworkElement == null || translator == null)
@@ -48,6 +55,14 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
+        /// <summary>
+        /// Translates the specified <see cref="FrameworkElement"/> using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model containing the localized strings.</param>
+        /// <param name="language">The target language for translation.</param>
+        /// <param name="frameworkElement">The framework element to translate.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested child elements.</param>
+        /// <returns><see langword="true"/> if the element was successfully translated; otherwise, <see langword="false"/>.</returns>
         public static bool TranslateFrameworkElement(this TranslationModel? translationModel, Language? language, FrameworkElement? frameworkElement, bool includeNested = true)
         {
             if (frameworkElement == null || translationModel == null)
@@ -115,6 +130,14 @@ namespace DiGi.Translate.WPF
             return result;
         }
 
+        /// <summary>
+        /// Translates the specified <see cref="FrameworkElement"/> using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model used to retrieve translated strings.</param>
+        /// <param name="language">The target language for the translation.</param>
+        /// <param name="frameworkElement">The framework element to translate.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested child elements.</param>
+        /// <returns>True if the translation process was successful; otherwise, false.</returns>
         public static bool TranslateFrameworkElement(this TranslationModel translationModel, Enums.Language language, FrameworkElement frameworkElement, bool includeNested = true)
         {
             return TranslateFrameworkElement(translationModel, (Language)language, frameworkElement, includeNested);

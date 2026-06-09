@@ -5,6 +5,9 @@
     /// </summary>
     public partial class TestControl : System.Windows.Controls.UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestControl"/> class.
+        /// </summary>
         public TestControl()
         {
             InitializeComponent();

@@ -1,14 +1,17 @@
-﻿namespace DiGi.Translate.Constants
+namespace DiGi.Translate.Constants
 {
+    /// <summary>
+    /// Provides a set of constant strings representing column names used in data sources and translations.
+    /// </summary>
     public static class ColumnName
     {
         /// <summary>
-        /// Category
+        /// The column name for the category.
         /// </summary>
         public const string Category = "Category";
 
         /// <summary>
-        /// Category
+        /// The column name for the unique identifier.
         /// </summary>
         public const string Id = "Id";
     }

@@ -6,6 +6,13 @@ namespace DiGi.Translate.Framework
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Translates the specified window using the provided translator.
+        /// </summary>
+        /// <param name="translator">The <see cref="Translator"/> instance used to perform the translation.</param>
+        /// <param name="window">The <see cref="Window"/> to be translated.</param>
+        /// <param name="includeNested">A value indicating whether nested elements within the window should also be translated.</param>
+        /// <returns>True if the window was successfully translated; otherwise, false.</returns>
         public static bool TranslateWindow(this Translator translator, Window window, bool includeNested = true)
         {
             if (window == null || translator == null)
@@ -44,6 +51,14 @@ namespace DiGi.Translate.Framework
             return result;
         }
 
+        /// <summary>
+        /// Translates the specified window using the provided translation model and language.
+        /// </summary>
+        /// <param name="translationModel">The translation model used to retrieve translated text.</param>
+        /// <param name="language">The target language for the translation.</param>
+        /// <param name="window">The window instance to translate.</param>
+        /// <param name="includeNested">A value indicating whether to recursively translate nested elements within the window.</param>
+        /// <returns>True if the window was successfully translated; otherwise, false.</returns>
         public static bool TranslateWindow(this TranslationModel translationModel, Language language, Window window, bool includeNested = true)
         {
             if (window == null || translationModel == null)

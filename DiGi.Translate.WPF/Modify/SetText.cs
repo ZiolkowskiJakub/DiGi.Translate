@@ -5,6 +5,12 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Sets the text of the specified <see cref="DependencyObject"/> if it supports a text property.
+        /// </summary>
+        /// <param name="dependencyObject">The <see cref="DependencyObject"/> to modify.</param>
+        /// <param name="text">The text string to assign.</param>
+        /// <returns>True if the text was successfully set; otherwise, false.</returns>
         public static bool SetText(this DependencyObject dependencyObject, string text)
         {
             if (dependencyObject == null)

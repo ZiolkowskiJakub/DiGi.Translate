@@ -6,6 +6,12 @@ namespace DiGi.Translate
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Reads translation data from a specified tab-delimited file and populates the provided translation model.
+        /// </summary>
+        /// <param name="translationModel">The translation model to be populated with the read data.</param>
+        /// <param name="path">The path to the source file containing the translation data.</param>
+        /// <returns><c>true</c> if the data was successfully read and loaded into the model; otherwise, <c>false</c>.</returns>
         public static bool Read(this TranslationModel? translationModel, string? path)
         {
             if (translationModel == null)

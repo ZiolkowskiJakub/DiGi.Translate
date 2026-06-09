@@ -5,6 +5,11 @@ namespace DiGi.Translate.WPF
 {
     public static partial class Query
     {
+        /// <summary>
+        /// Extracts the text content from the specified dependency object.
+        /// </summary>
+        /// <param name="dependencyObject">The dependency object to retrieve text from.</param>
+        /// <returns>The extracted text string if the object supports it; otherwise, <see langword="null"/>.</returns>
         public static string? Text(this DependencyObject dependencyObject)
         {
             if (dependencyObject == null)

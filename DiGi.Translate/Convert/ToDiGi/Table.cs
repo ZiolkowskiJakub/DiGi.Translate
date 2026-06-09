@@ -6,6 +6,11 @@ namespace DiGi.Translate
 {
     public static partial class Convert
     {
+        /// <summary>
+        /// Converts a <see cref="TranslationModel"/> instance into a <see cref="Table"/> representation.
+        /// </summary>
+        /// <param name="translationModel">The translation model to convert.</param>
+        /// <returns>A <see cref="Table"/> object containing the translated data, or <see langword="null"/> if the <paramref name="translationModel"/> is null.</returns>
         public static Table? ToDiGi_Table(this TranslationModel? translationModel)
         {
             if (translationModel == null)

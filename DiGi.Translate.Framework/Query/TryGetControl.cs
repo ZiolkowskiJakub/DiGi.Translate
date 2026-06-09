@@ -7,6 +7,13 @@ namespace DiGi.Translate.Framework
 {
     public static partial class Query
     {
+        /// <summary>
+        /// Attempts to retrieve a control with the specified identifier from the given control's hierarchy.
+        /// </summary>
+        /// <param name="control">The root control to search within.</param>
+        /// <param name="id">The unique identifier of the control to locate.</param>
+        /// <param name="result">When this method returns, contains the found control if successful; otherwise, null.</param>
+        /// <returns>True if the control with the specified identifier was found; otherwise, false.</returns>
         public static bool TryGetControl(this Control control, string id, out Control result)
         {
             result = null;

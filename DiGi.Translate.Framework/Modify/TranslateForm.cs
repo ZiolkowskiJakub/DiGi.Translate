@@ -6,6 +6,13 @@ namespace DiGi.Translate.Framework
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Translates the specified form using the provided translator instance.
+        /// </summary>
+        /// <param name="translator">The <see cref="Translator"/> used to retrieve translated text.</param>
+        /// <param name="form">The <see cref="Form"/> to be translated.</param>
+        /// <param name="includeNested">A value indicating whether nested controls within the form should also be translated. Defaults to <c>true</c>.</param>
+        /// <returns><c>true</c> if the form was successfully translated; otherwise, <c>false</c>.</returns>
         public static bool TranslateForm(this Translator translator, Form form, bool includeNested = true)
         {
             if (form == null || translator == null)
@@ -48,6 +55,14 @@ namespace DiGi.Translate.Framework
             return result;
         }
 
+        /// <summary>
+        /// Translates the specified form using the provided translation model and target language.
+        /// </summary>
+        /// <param name="translationModel">The translation model used to retrieve localized strings.</param>
+        /// <param name="language">The target language for the translation.</param>
+        /// <param name="form">The form instance to be translated.</param>
+        /// <param name="includeNested">A value indicating whether nested controls within the form should also be translated.</param>
+        /// <returns>True if the form was successfully translated; otherwise, false.</returns>
         public static bool TranslateForm(this TranslationModel translationModel, Language language, Form form, bool includeNested = true)
         {
             if (form == null || translationModel == null)

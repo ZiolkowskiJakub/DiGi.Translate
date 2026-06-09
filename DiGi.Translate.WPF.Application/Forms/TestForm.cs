@@ -2,6 +2,9 @@
 {
     public partial class TestForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestForm"/> class.
+        /// </summary>
         public TestForm()
         {
             InitializeComponent();
