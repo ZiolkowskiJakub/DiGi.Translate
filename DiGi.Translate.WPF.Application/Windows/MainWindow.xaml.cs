@@ -21,10 +21,10 @@ namespace DiGi.Translate.WPF.Application.Windows
         {
             DataGrid_Main.Columns.Add(new DataGridComboBoxColumn() { Header = "TestHeader" });
 
-            TranslationModel translationModel = new TranslationModel();
+            TranslationModel translationModel = new();
             translationModel.Add(Enums.Language.English, this, false, true);
 
-            Translation translation = new Translation(Enums.Category.Control, "MainWindow.Grid_1.DataGrid_Main.0");
+            Translation translation = new(Enums.Category.Control, "MainWindow.Grid_1.DataGrid_Main.0");
             translation.Add(Enums.Language.German, "AAA");
             translationModel.Add(translation);
 

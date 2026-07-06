@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 
 namespace DiGi.Translate.WPF
 {
@@ -27,7 +28,7 @@ namespace DiGi.Translate.WPF
                 string? id = control.Parent.Id();
                 if (!string.IsNullOrEmpty(id))
                 {
-                    result = string.Format("{0}.{1}", id, result);
+                    result = string.Format(CultureInfo.InvariantCulture, "{0}.{1}", id, result);
                 }
             }
 
@@ -52,7 +53,7 @@ namespace DiGi.Translate.WPF
                 result = dependencyObject.GetType().Name;
                 if (TryGetIndex(dependencyObject, out int index))
                 {
-                    result = string.Format("{0}_{1}", result, index);
+                    result = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", result, index);
                 }
             }
 
@@ -62,7 +63,7 @@ namespace DiGi.Translate.WPF
                 string? id = dependencyObject_Parent.Id();
                 if (!string.IsNullOrEmpty(id))
                 {
-                    result = string.IsNullOrWhiteSpace(result) ? id : string.Format("{0}.{1}", id, result);
+                    result = string.IsNullOrWhiteSpace(result) ? id : string.Format(CultureInfo.InvariantCulture, "{0}.{1}", id, result);
                 }
             }
 
@@ -83,7 +84,7 @@ namespace DiGi.Translate.WPF
 
             string? id = Id(dataGridViewColumn.DataGridView);
 
-            return string.IsNullOrEmpty(id) ? dataGridViewColumn.Name : string.Format("{0}.{1}", id, dataGridViewColumn.Name);
+            return string.IsNullOrEmpty(id) ? dataGridViewColumn.Name : string.Format(CultureInfo.InvariantCulture, "{0}.{1}", id, dataGridViewColumn.Name);
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace DiGi.Translate.WPF
                 index = dataGridColumn.DisplayIndex;
             }
 
-            return string.Format("{0}.{1}_{2}", id, dataGridColumn.GetType().Name, index);
+            return string.Format(CultureInfo.InvariantCulture, "{0}.{1}_{2}", id, dataGridColumn.GetType().Name, index);
         }
     }
 }

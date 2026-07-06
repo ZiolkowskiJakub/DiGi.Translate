@@ -19,7 +19,7 @@ namespace DiGi.Translate.WPF
                 return null;
             }
 
-            List<TDependencyObject> result = new List<TDependencyObject>();
+            List<TDependencyObject> result = new();
             foreach (object @object in childrens)
             {
                 if (!(@object is DependencyObject))

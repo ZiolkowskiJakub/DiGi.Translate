@@ -16,6 +16,9 @@ indent_size = 4
 tab_width = 4
 
 [*.cs]
+# DiGi.Convert methods intentionally use To[TargetArea]_[TargetType] naming (e.g. ToDiGi_Table)
+dotnet_diagnostic.CA1707.severity = none
+
 # Indentation and layout rules
 csharp_indent_labels = one_less_than_current
 csharp_using_directive_placement = outside_namespace:silent
