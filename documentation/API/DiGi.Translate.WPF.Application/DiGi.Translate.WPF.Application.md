@@ -1,4 +1,4 @@
-#### [DiGi\.Translate\.WPF\.Application](index.md 'index')
+#### [DiGi\.Translate\.WPF\.Application](DiGi.Translate.WPF.Application.Overview.md 'DiGi\.Translate\.WPF\.Application\.Overview')
 
 ## DiGi\.Translate\.WPF\.Application Namespace
 ### Classes

@@ -1,4 +1,4 @@
-#### [DiGi\.Translate](index.md 'index')
+#### [DiGi\.Translate](DiGi.Translate.Overview.md 'DiGi\.Translate\.Overview')
 
 ## DiGi\.Translate\.Constants Namespace
 ### Classes
